@@ -10,14 +10,30 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="assets/style.css" />
-		<script type="text/javacsript" src="assets/jquery.js"></script>
+		<script type="text/javascript" src="assets/jquery.js"></script>
 		<title>I'm A Pizza!</title>
 	</head>
 	<body>
-		<img src="assets/pizza.jpg" />
-		<p id="clicks"><?=$clicks?></p><p> Clicks!</p>
+		<img id="pizza" src="assets/pizza.jpg" />
+		<p id="clicks"><?=$clicks?></p><p>&nbsp;Clicks!</p>
 		<script>
-			
+			$(document).ready(function(){
+				$.get('click.php', function(data){
+					$('#clicks').html(data);
+				});
+			});
+
+			$('#pizza').click(function(){
+				var clicks = Number($('#clicks').html()) + 1;
+				$('#clicks').html(clicks);
+				$.post('click.php', {click: null});
+			});
+
+			setInterval(function(){
+				$.get('click.php', function(data){
+					$('#clicks').html(data);
+				});
+			}, 100);
 		</script>
 	</body>
 </html>
