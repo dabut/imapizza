@@ -30,17 +30,16 @@
 
 			// Add 1 to clicks, update DOM then POST to click.php for new click
 			$('#pizza').click(function(){
-				clicks++;
-				$('#clicks').html(clicks);
+				$('#clicks').html(clicks+=1);
 				$.post('click.php', {click: null});
 			});
-
 
 			// Update DOM for clicks every 100ms
 			setInterval(function(){
 				$.get('click.php', function(data){
-					$('#clicks').html(Math.max(clicks, Number(data)));
+					clicks = Math.max(clicks, Number(data));
 				});
+				$('#clicks').html(clicks);
 			}, 100);
 		</script>
 	</body>
