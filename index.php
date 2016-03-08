@@ -17,15 +17,17 @@
 		<img id="pizza" src="assets/pizza.jpg" />
 		<p id="clicks"><?=$clicks?></p><p>&nbsp;Clicks!</p>
 		<script>
+			var clicks;
+
 			$(document).ready(function(){
 				$.get('click.php', function(data){
-					var clicks =Number(data);
+					clicks = Number(data);
 					$('#clicks').html(data);
 				});
 			});
 
 			$('#pizza').click(function(){
-				var clicks = Number($('#clicks').html()) + 1;
+				clicks = Number($('#clicks').html()) + 1;
 				$('#clicks').html(clicks);
 				$.post('click.php', {click: null});
 			});
