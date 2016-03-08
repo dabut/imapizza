@@ -26,14 +26,10 @@
 			$('#pizza').click(function(){
 				var clicks = Number($('#clicks').html()) + 1;
 				$('#clicks').html(clicks);
-				$.post('click.php', {click: null});
-			});
-
-			setInterval(function(){
-				$.get('click.php', function(data){
+				$.post('click.php', {click: null}, function(data){
 					$('#clicks').html(data);
 				});
-			}, 100);
+			});
 		</script>
 	</body>
 </html>
