@@ -1,3 +1,18 @@
-#clicks {
+p {
 	float: left;
+}
+
+.clicks {
+	display: table;
+	color: red;
+	font-family: Cursive;
+	font-size: 20pt;
+	height: 10vh;
+	margin: 5vh auto;
+}
+
+#pizza {
+	display: block;
+	height: 70vh;
+	margin: 5vh auto;
 }
