@@ -19,6 +19,7 @@
 		<script>
 			$(document).ready(function(){
 				$.get('click.php', function(data){
+					var clicks =Number(data);
 					$('#clicks').html(data);
 				});
 			});
@@ -26,10 +27,14 @@
 			$('#pizza').click(function(){
 				var clicks = Number($('#clicks').html()) + 1;
 				$('#clicks').html(clicks);
-				$.post('click.php', {click: null}, function(data){
-					$('#clicks').html(data);
-				});
+				$.post('click.php', {click: null});
 			});
+
+			setInterval(function(){
+				$.get('click.php', function(data){
+					$('#clicks').html(max(clicks, Number(data)));
+				});
+			}, 100);
 		</script>
 	</body>
 </html>
