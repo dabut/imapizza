@@ -32,7 +32,7 @@
 
 			setInterval(function(){
 				$.get('click.php', function(data){
-					$('#clicks').html(max(clicks, Number(data)));
+					$('#clicks').html(Math.max(clicks, Number(data)));
 				});
 			}, 100);
 		</script>
