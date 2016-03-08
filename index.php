@@ -15,10 +15,12 @@
 	</head>
 	<body>
 		<img id="pizza" src="assets/pizza.jpg" />
-		<p id="clicks"><?=$clicks?></p><p>&nbsp;Clicks!</p>
+		<div class="clicks"><p id="clicks"><?=$clicks?></p><p>&nbsp;Clicks!</p></div>
 		<script>
+			// Creates variable for number of clicks
 			var clicks;
 
+			// Inital value for clicks and update DOM
 			$(document).ready(function(){
 				$.get('click.php', function(data){
 					clicks = Number(data);
@@ -26,12 +28,15 @@
 				});
 			});
 
+			// Add 1 to clicks, update DOM then POST to click.php for new click
 			$('#pizza').click(function(){
-				clicks = Number($('#clicks').html()) + 1;
+				clicks++;
 				$('#clicks').html(clicks);
 				$.post('click.php', {click: null});
 			});
 
+
+			// Update DOM for clicks every 100ms
 			setInterval(function(){
 				$.get('click.php', function(data){
 					$('#clicks').html(Math.max(clicks, Number(data)));
